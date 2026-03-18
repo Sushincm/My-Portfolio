@@ -155,7 +155,7 @@ export default function GameApp({ setModal, onCollectSkill, setEngineReady, rest
       const flagX = 1850;
       k.add([k.rect(6,200),k.pos(flagX,GY-200),k.color(k.rgb(220,220,220)),k.area(),k.body({isStatic:true})]);
       k.add([k.rect(28,20),k.pos(flagX-24,GY-204),k.color(k.rgb(0,200,60))]);
-      pcoin(flagX-120,GY-100,'',() => { window.open('/cv.html', '_blank', 'noopener,noreferrer'); });
+      pcoin(flagX-120,GY-100,'',() => { setModalRef.current({type:'CV'}); });
       label(flagX-90,GY-130,'DOWNLOAD CV');
       k.add([k.rect(80,GY),k.pos(flagX-20,0),k.color(k.rgb(0,0,0)),k.opacity(0),k.area(),'wintrigger']);
 
@@ -182,8 +182,8 @@ export default function GameApp({ setModal, onCollectSkill, setEngineReady, rest
       });
 
       k.onUpdate(()=>{
-        if(input.left)  player.move(-SPEED,0);
-        if(input.right) player.move(SPEED,0);
+        if(input.left)  { player.move(-SPEED,0); player.flipX = true;  }
+        if(input.right) { player.move(SPEED,0);  player.flipX = false; }
         if(input.jump && player.isGrounded()){ player.jump(JUMP_FORCE); input.jump=false; }
         
         // mario character is left center: focus camera so player is at ~25% from left

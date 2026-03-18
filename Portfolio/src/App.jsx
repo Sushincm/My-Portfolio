@@ -5,6 +5,7 @@ import AboutModal from './components/AboutModal';
 import ProjectCard from './components/ProjectCard';
 import ContactForm from './components/ContactForm';
 import WinModal from './components/WinModal';
+import CVModal from './components/CVModal';
 import './index.css';
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
       {modal?.type === 'ABOUT'   && <AboutModal   onClose={closeModal} />}
       {modal?.type === 'PROJECT' && <ProjectCard  project={projectData} onClose={closeModal} />}
       {modal?.type === 'CONTACT' && <ContactForm  onClose={closeModal} />}
+      {modal?.type === 'CV'      && <CVModal       onClose={closeModal} />}
       {modal?.type === 'WIN' && <WinModal onClose={closeModal} onRestart={() => { restartRef.current?.(); setCoinCount(0); closeModal(); }} />}
     </div>
   );
