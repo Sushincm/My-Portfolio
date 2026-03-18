@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style> body { margin: 0; overflow: hidden; } </style>
+</head>
+<body>
+  <div id="react-root" style="position: absolute; top:0; left: 0; z-index: 10;">
+    <h1 style="color: white">React HUD</h1>
+  </div>
+  <canvas id="game-canvas" width="800" height="600"></canvas>
+  <script type="module">
+    import kaboom from "https://unpkg.com/kaboom@3000.1.17/dist/kaboom.mjs";
+    const k = kaboom({
+      canvas: document.getElementById("game-canvas"),
+      background: [92, 148, 252],
+    });
+    
+    k.scene("main", () => {
+      k.add([
+        k.rect(100, 100),
+        k.pos(100, 100),
+        k.color(255, 0, 0)
+      ]);
+      k.add([
+        k.circle(50),
+        k.pos(300, 300),
+        k.color(255, 200, 0)
+      ]);
+    });
+    k.go("main");
+  </script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sushin Babu CM — CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #0a0e1a; color: #e0e6f0; min-height: 100vh; }
+
+    .page { max-width: 860px; margin: 0 auto; padding: 48px 32px; }
+
+    /* Header */
+    .header { display: flex; align-items: center; gap: 32px; border-bottom: 2px solid #1e2a44; padding-bottom: 32px; margin-bottom: 32px; }
+    .avatar-wrap { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #6c63ff, #00c9ff); display: flex; align-items: center; justify-content: center; font-size: 2.4rem; flex-shrink: 0; }
+    h1 { font-size: 2rem; font-weight: 700; color: #fff; }
+    .subtitle { font-size: 1rem; color: #7b9cde; margin-top: 4px; }
+    .contacts { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; }
+    .contacts a { color: #5b9bff; text-decoration: none; font-size: 0.85rem; }
+    .contacts a:hover { text-decoration: underline; }
+
+    /* Sections */
+    section { margin-bottom: 32px; }
+    h2 { font-size: 1rem; font-weight: 700; color: #6c63ff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px; padding-bottom: 6px; border-bottom: 1px solid #1e2a44; }
+    p { font-size: 0.92rem; line-height: 1.75; color: #b0bec5; }
+
+    /* Skills grid */
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill-tag { background: #131929; border: 1px solid #2a3a5e; border-radius: 8px; padding: 6px 14px; font-size: 0.82rem; color: #a0cff5; }
+    .skill-tag.ai { border-color: #6c63ff; color: #c4bcff; }
+
+    /* Experience / Education */
+    .entry { margin-bottom: 20px; }
+    .entry-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+    .entry-title { font-weight: 600; color: #e0e6f0; font-size: 0.97rem; }
+    .entry-sub   { color: #7b9cde; font-size: 0.85rem; }
+    .entry-date  { color: #4a5568; font-size: 0.82rem; }
+    ul.bullets   { margin-top: 8px; padding-left: 18px; }
+    ul.bullets li { font-size: 0.88rem; color: #b0bec5; line-height: 1.7; }
+
+    /* Print */
+    @media print {
+      body { background: #fff; color: #111; }
+      .skill-tag, .entry { break-inside: avoid; }
+      h2 { color: #4a3aff; }
+    }
+
+    @media (max-width: 600px) {
+      .page { padding: 24px 16px; }
+      h1 { font-size: 1.5rem; }
+      .header { flex-direction: column; gap: 16px; }
+    }
+
+    .print-btn {
+      position: fixed; top: 20px; right: 20px;
+      background: linear-gradient(135deg,#6c63ff,#00c9ff);
+      color: #fff; border: none; padding: 10px 20px; border-radius: 10px;
+      font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 600;
+      cursor: pointer; box-shadow: 0 4px 20px rgba(108,99,255,0.4);
+    }
+    @media print { .print-btn { display: none; } }
+  </style>
+</head>
+<body>
+  <button class="print-btn" onclick="window.print()">🖨️ Print / Save PDF</button>
+  <div class="page">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="avatar-wrap">👨‍💻</div>
+      <div>
+        <h1>Sushin Babu CM</h1>
+        <p class="subtitle">MERN Stack Developer &amp; AI-Assisted Builder</p>
+        <div class="contacts">
+          <a href="mailto:sushinofficial@gmail.com">sushinofficial@gmail.com</a>
+          <a href="https://github.com/Sushincm" target="_blank">github.com/Sushincm</a>
+          <a href="https://linkedin.com/in/sushin-cm" target="_blank">linkedin.com/in/sushin-cm</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section>
+      <h2>About</h2>
+      <p>
+        I build interactive, user-focused web experiences specializing in the MERN stack.
+        Currently deepening my expertise in Node.js, Express, and MongoDB. I leverage modern AI tools
+        like Antigravity and Claude to accelerate development — combining technical knowledge with
+        vibecoding workflows to ship premium, functional interfaces faster than ever.
+      </p>
+    </section>
+
+    <!-- SKILLS -->
+    <section>
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <span class="skill-tag">HTML5</span>
+        <span class="skill-tag">CSS3</span>
+        <span class="skill-tag">JavaScript (ES6+)</span>
+        <span class="skill-tag">React</span>
+        <span class="skill-tag">Node.js</span>
+        <span class="skill-tag">Express.js</span>
+        <span class="skill-tag">MongoDB</span>
+        <span class="skill-tag">REST APIs</span>
+        <span class="skill-tag">Vite</span>
+        <span class="skill-tag">Git / GitHub</span>
+        <span class="skill-tag ai">🤖 Antigravity AI</span>
+        <span class="skill-tag ai">🤖 Claude AI</span>
+        <span class="skill-tag">Responsive Design</span>
+        <span class="skill-tag">Kaboom.js</span>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section>
+      <h2>Projects</h2>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Trading Assistance App</span>
+          <span class="entry-date">2024</span>
+        </div>
+        <span class="entry-sub">React · JavaScript · CSS</span>
+        <ul class="bullets">
+          <li>Built a forex risk management tool for prop firm traders</li>
+          <li>Features: stop-loss/lot-size calculator, trade journal, analytics &amp; news alerts</li>
+          <li>Used by a circle of traders to stay compliant with daily loss limits</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Social Media Carousel Generator</span>
+          <span class="entry-date">2024</span>
+        </div>
+        <span class="entry-sub">HTML · CSS · JavaScript</span>
+        <ul class="bullets">
+          <li>Graphic design tool for generating cohesive image carousels for social platforms</li>
+          <li>Custom prompt-based design system with multiple style presets</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">AI Development Sandbox</span>
+          <span class="entry-date">2024 – Present</span>
+        </div>
+        <span class="entry-sub">Antigravity · Claude · React · Firebase</span>
+        <ul class="bullets">
+          <li>Rapid prototype and deployment of web interfaces using AI-assisted workflows</li>
+          <li>Demonstrates capability to ship production-quality features with AI collaboration</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Mario-Style Portfolio Game</span>
+          <span class="entry-date">2025</span>
+        </div>
+        <span class="entry-sub">React · Kaboom.js · Vite</span>
+        <ul class="bullets">
+          <li>Interactive pixel-art portfolio delivered as a playable browser game</li>
+          <li>Players collect coins to unlock About, Projects, Skills, and Contact info</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- LEARNING -->
+    <section>
+      <h2>Currently Learning</h2>
+      <div class="skills-grid">
+        <span class="skill-tag">Node.js (Backend)</span>
+        <span class="skill-tag">Express.js (REST APIs)</span>
+        <span class="skill-tag">MongoDB (Mongoose ODM)</span>
+        <span class="skill-tag">Full-Stack Deployment</span>
+      </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section>
+      <h2>Development Approach</h2>
+      <p>
+        I combine hands-on coding with modern AI-assisted development ("vibecoding") using
+        Antigravity and Claude. This allows me to architect solutions quickly, iterate on UX ideas
+        in real time, and deliver polished results while still maintaining full understanding and
+        ownership of the codebase.
+      </p>
+    </section>
+
+  </div>
+</body>
+</html>

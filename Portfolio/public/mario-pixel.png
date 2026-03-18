@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Error><Code>PermanentRedirect</Code><Message>The bucket you are attempting to access must be addressed using the specified endpoint. Please send all future requests to this endpoint.</Message><Endpoint>figma-alpha-api.s3.amazonaws.com</Endpoint><Bucket>figma-alpha-api</Bucket><RequestId>BSEH4H7TGKBP49AB</RequestId><HostId>GxkgI4umxdGsWyqGY+BvrLkTCE34MUNtJkYywquox76IjN+5y5sawQ+PFmnonzVgh1Hvb6Dkhe0uukFiytNamQMKeFra9MSnJYlRjkXvNpo=</HostId></Error>

@@ -1,0 +1,513 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;800&display=swap');
+
+/* ── Reset ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Press Start 2P', monospace;
+  background: #18181b;
+  color: #f4f4f5;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.app-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Mario-style Coin Counter HUD ──────────────────── */
+.hud-container {
+  position: fixed;
+  top: 14px;
+  right: 20px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(0,0,0,0.72);
+  border: 3px solid #ffd700;
+  box-shadow: 3px 3px 0 #b8860b;
+  padding: 6px 14px 6px 10px;
+  border-radius: 4px;
+  image-rendering: pixelated;
+}
+
+.hud-coin-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.hud-x {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.75rem;
+  color: #fff;
+  margin: 0 2px;
+}
+
+.hud-coin-count {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1rem;
+  color: #ffd700;
+  text-shadow: 2px 2px 0 #b8860b;
+  min-width: 28px;
+  text-align: left;
+}
+
+
+/* ── Modal backdrop ────────────────────────────────── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Pixel-border modal */
+.modal-content {
+  background: #1a1a2e;
+  border: 4px solid #ffd700;
+  /* pixelated corner shadow */
+  box-shadow:
+    4px  0 0 0 #b8860b,
+    0  4px 0 0 #b8860b,
+    4px  4px 0 0 #b8860b,
+    8px  8px 0 0 rgba(0,0,0,0.5);
+  max-width: 520px;
+  width: 100%;
+  padding: 2rem;
+  position: relative;
+  animation: pixelIn 0.2s steps(4, end);
+  overflow-y: auto;
+  max-height: 90vh;
+  image-rendering: pixelated;
+}
+
+@keyframes pixelIn {
+  0%  { opacity:0; transform:scale(0.8) translateY(16px); }
+  100%{ opacity:1; transform:scale(1)   translateY(0); }
+}
+
+.project-modal--grid { max-width: 660px; }
+
+/* Pixel close btn */
+.close-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: #ff0000;
+  border: 3px solid #880000;
+  color: #fff;
+  width: 32px;
+  height: 32px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.7rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  image-rendering: pixelated;
+  box-shadow: 2px 2px 0 #440000;
+  transition: background 0.1s;
+}
+.close-btn:hover { background: #ff4444; }
+
+/* ── Pixel headings ──────────────────────────────── */
+h2, .section-heading {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1rem;
+  color: #ffd700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 0 #b8860b;
+  line-height: 1.6;
+}
+h3 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.65rem;
+  color: #00ff88;
+  margin-bottom: 0.5rem;
+  text-shadow: 1px 1px 0 #005533;
+}
+p {
+  font-family: 'Inter', sans-serif;
+  color: #c4c4d0;
+  line-height: 1.65;
+  font-size: 0.9rem;
+}
+
+/* ── About Modal ─────────────────────────────────── */
+.about-header {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #333;
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  border: 4px solid #ffd700;
+  box-shadow: 4px 4px 0 #b8860b;
+  background: #333;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+}
+
+.title-tag {
+  color: #00ccff;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  margin-top: 6px;
+  line-height: 1.8;
+}
+
+.about-bio {
+  margin-bottom: 1.25rem;
+  font-size: 0.88rem;
+  color: #d4d4d8;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.65;
+}
+
+/* Skill chips */
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+.skill-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #2a2a40;
+  border: 2px solid #555;
+  padding: 4px 10px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  color: #ffd700;
+}
+.skill-chip img { width: 16px; height: 16px; image-rendering: pixelated; }
+
+.section-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  color: #a0c4ff;
+  letter-spacing: 1px;
+  margin: 1rem 0 0.5rem;
+  text-transform: uppercase;
+}
+
+.ai-chip {
+  background: #1a1433;
+  border-color: #7c63ff;
+  color: #c4bcff;
+}
+
+
+/* ── Social / CTA buttons (pixel style) ─────────── */
+.social-links, .project-links {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.btn-social, .btn-primary, .btn-secondary, .btn-submit {
+  text-decoration: none;
+  padding: 0.55rem 1rem;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  cursor: pointer;
+  border: 3px solid;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.1s;
+  flex: 1;
+  justify-content: center;
+  line-height: 1.4;
+}
+.btn-social, .btn-primary, .btn-secondary, .btn-submit:active { transform: translate(2px,2px); }
+
+.btn-social {
+  background: #2a2a3a;
+  border-color: #888;
+  color: #eee;
+  box-shadow: 3px 3px 0 #333;
+}
+.btn-social:hover { background: #3a3a5a; }
+
+.btn-linkedin { background: #003366; border-color: #0066cc; color: #fff; box-shadow: 3px 3px 0 #001133; }
+
+.btn-primary {
+  background: #c00080;
+  border-color: #ff00cc;
+  color: #fff;
+  box-shadow: 4px 4px 0 #600040;
+}
+.btn-primary:hover { background: #e000a0; }
+
+.btn-secondary {
+  background: #003300;
+  border-color: #00ff00;
+  color: #00ff00;
+  box-shadow: 4px 4px 0 #001100;
+}
+.btn-secondary:hover { background: #004400; }
+
+/* ── Project Card ─────────────────────────────────── */
+.proj-card {
+  background: #0d0d1a;
+  border: 2px solid #444;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+}
+.proj-card:last-child { margin-bottom: 0; }
+
+.short-desc {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  color: #00ccff;
+  margin-bottom: 0.6rem;
+  line-height: 1.8;
+}
+.long-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #a0a0b0;
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.85rem;
+}
+.tech-badge {
+  background: #111;
+  border: 2px solid #ffd700;
+  padding: 3px 8px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.45rem;
+  color: #ffd700;
+}
+
+/* ── Contact Form ─────────────────────────────────── */
+.email-display { margin: 0.5rem 0 1rem; }
+.email-display a {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  color: #00ccff;
+  text-decoration: none;
+}
+.email-display a:hover { text-decoration: underline; }
+
+.contact-form { display:flex; flex-direction:column; gap:0.65rem; margin-top:0.75rem; }
+.contact-form input,
+.contact-form textarea {
+  background: #0d0d1a;
+  border: 3px solid #444;
+  padding: 0.7rem;
+  color: #f4f4f5;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #ffd700;
+  box-shadow: 0 0 0 2px rgba(255,215,0,0.25);
+}
+.btn-submit {
+  background: #006600;
+  border-color: #00ff00;
+  color: #00ff00;
+  box-shadow: 4px 4px 0 #003300;
+  font-size: 0.6rem;
+}
+.btn-submit:hover { background: #007700; }
+
+.success-msg {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  color: #00ff88;
+  padding: 1rem;
+  background: rgba(0,255,136,0.08);
+  border: 2px dashed #00ff88;
+  text-align: center;
+  margin-top: 1rem;
+  line-height: 1.8;
+}
+
+/* ── HUD ─────────────────────────────────────────── */
+.hud-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 0.6rem 0.8rem;
+  border: 3px solid #ffd700;
+  box-shadow: 3px 3px 0 #b8860b;
+  z-index: 10;
+  pointer-events: none;
+  image-rendering: pixelated;
+}
+
+.hud-container h3 {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  color: #ffd700;
+  margin-bottom: 0.5rem;
+  text-shadow: 1px 1px 0 #b8860b;
+  text-transform: uppercase;
+}
+
+.skills-bar { display:flex; gap:0.4rem; align-items:center; }
+
+.skill-icon {
+  width: 40px;
+  height: 40px;
+  background: #111;
+  border: 3px solid #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s steps(3);
+  position: relative;
+}
+
+.skill-icon.locked  { filter: grayscale(1) opacity(0.2); }
+.skill-icon.collected {
+  border-color: #00ff88;
+  box-shadow: 0 0 0 2px #00ff88, 2px 2px 0 #003322;
+  animation: pixelPop 0.3s steps(3, end);
+}
+.icon-img { width: 24px; height: 24px; image-rendering: pixelated; }
+
+.skill-name {
+  position: absolute;
+  bottom: -18px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.4rem;
+  white-space: nowrap;
+  color: #fff;
+  background: rgba(0,0,0,0.85);
+  padding: 2px 4px;
+  border: 1px solid #555;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.skill-icon.collected:hover .skill-name { opacity: 1; }
+
+@keyframes pixelPop {
+  0%  { transform: scale(0.5); }
+  50% { transform: scale(1.4); }
+  100%{ transform: scale(1); }
+}
+
+/* ── WIN Modal ──────────────────────────────────────── */
+.win-modal {
+  text-align: center;
+  border-color: #ffd700;
+  background: linear-gradient(160deg, #0a0a1a 0%, #1a0a2e 100%);
+  max-width: 460px;
+}
+
+.win-title {
+  font-size: 1.6rem;
+  color: #ffd700;
+  text-shadow: 3px 3px 0 #b8860b, 0 0 20px rgba(255,215,0,0.6);
+  animation: winTitlePulse 1s steps(2, end) infinite;
+  margin: 0.75rem 0 0.5rem;
+}
+
+@keyframes winTitlePulse {
+  0%  { text-shadow: 3px 3px 0 #b8860b, 0 0 20px rgba(255,215,0,0.6); }
+  50% { text-shadow: 3px 3px 0 #b8860b, 0 0 40px rgba(255,215,0,1); }
+  100%{ text-shadow: 3px 3px 0 #b8860b, 0 0 20px rgba(255,215,0,0.6); }
+}
+
+.win-sub {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  color: #00ccff;
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+.win-score {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin: 0.75rem 0 1rem;
+  background: rgba(0,0,0,0.5);
+  padding: 0.6rem;
+  border: 2px solid #444;
+}
+.score-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  color: #aaa;
+}
+.score-val {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1rem;
+  color: #ffd700;
+  text-shadow: 2px 2px 0 #b8860b;
+}
+
+.win-msg {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
+  color: #c4c4d0;
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+
+.win-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.win-btn { flex: 1; max-width: 180px; font-size: 0.65rem; }
+
+/* Confetti dots */
+.confetti-row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 0.5rem 0;
+}
+.confetti-dot {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  image-rendering: pixelated;
+  animation: confettiBounce 0.6s steps(4, end) infinite alternate;
+}
+@keyframes confettiBounce {
+  from { transform: translateY(0);    opacity: 1; }
+  to   { transform: translateY(-8px); opacity: 0.6; }
+}
