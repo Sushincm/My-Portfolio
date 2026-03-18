@@ -832,23 +832,18 @@ p {
 @media (max-width: 600px) {
   .modal-backdrop {
     padding: 0.5rem;
-    align-items: flex-end;        /* slide up from bottom on phones */
+    align-items: center;           /* centered vertically on phones */
   }
 
   .modal-content {
     padding: 1.25rem 1rem;
-    max-height: 82vh;
-    border-radius: 0;             /* edge-to-edge on small phones */
+    max-height: 88vh;
+    border-radius: 4px;
     box-shadow:
       3px  0 0 0 #b8860b,
       0  3px 0 0 #b8860b,
       3px  3px 0 0 #b8860b;
-    animation: slideUp 0.22s ease;
-  }
-
-  @keyframes slideUp {
-    from { transform: translateY(30px); opacity:0; }
-    to   { transform: translateY(0);    opacity:1; }
+    animation: pixelIn 0.2s steps(4, end);
   }
 
   .project-modal--grid { max-width: 100%; }

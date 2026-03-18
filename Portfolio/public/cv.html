@@ -3,95 +3,162 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sushin Babu CM — CV</title>
+  <title>Sushin Babu CM — Full Stack Developer CV</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background: #0a0e1a; color: #e0e6f0; min-height: 100vh; }
 
-    .page { max-width: 860px; margin: 0 auto; padding: 48px 32px; }
+    .page { max-width: 860px; margin: 0 auto; padding: 48px 32px 64px; }
 
-    /* Header */
-    .header { display: flex; align-items: center; gap: 32px; border-bottom: 2px solid #1e2a44; padding-bottom: 32px; margin-bottom: 32px; }
+    /* ── Header ── */
+    .header { display: flex; align-items: center; gap: 28px; border-bottom: 2px solid #1e2a44; padding-bottom: 28px; margin-bottom: 28px; }
     .avatar-wrap { width: 90px; height: 90px; border-radius: 50%; background: linear-gradient(135deg, #6c63ff, #00c9ff); display: flex; align-items: center; justify-content: center; font-size: 2.4rem; flex-shrink: 0; }
-    h1 { font-size: 2rem; font-weight: 700; color: #fff; }
-    .subtitle { font-size: 1rem; color: #7b9cde; margin-top: 4px; }
-    .contacts { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; }
-    .contacts a { color: #5b9bff; text-decoration: none; font-size: 0.85rem; }
+    .header-info h1 { font-size: 1.9rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .subtitle { font-size: 1rem; color: #7b9cde; margin-bottom: 10px; }
+    .contacts { display: flex; flex-wrap: wrap; gap: 14px; }
+    .contacts a { color: #5b9bff; text-decoration: none; font-size: 0.84rem; }
     .contacts a:hover { text-decoration: underline; }
 
-    /* Sections */
-    section { margin-bottom: 32px; }
-    h2 { font-size: 1rem; font-weight: 700; color: #6c63ff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px; padding-bottom: 6px; border-bottom: 1px solid #1e2a44; }
+    /* ── Section ── */
+    section { margin-bottom: 30px; }
+    h2 { font-size: 0.82rem; font-weight: 700; color: #6c63ff; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 14px; padding-bottom: 6px; border-bottom: 1px solid #1e2a44; }
     p { font-size: 0.92rem; line-height: 1.75; color: #b0bec5; }
 
-    /* Skills grid */
-    .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-    .skill-tag { background: #131929; border: 1px solid #2a3a5e; border-radius: 8px; padding: 6px 14px; font-size: 0.82rem; color: #a0cff5; }
+    /* ── Skills ── */
+    .skills-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag { background: #131929; border: 1px solid #2a3a5e; border-radius: 6px; padding: 5px 13px; font-size: 0.82rem; color: #a0cff5; }
     .skill-tag.ai { border-color: #6c63ff; color: #c4bcff; }
 
-    /* Experience / Education */
-    .entry { margin-bottom: 20px; }
-    .entry-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
-    .entry-title { font-weight: 600; color: #e0e6f0; font-size: 0.97rem; }
-    .entry-sub   { color: #7b9cde; font-size: 0.85rem; }
-    .entry-date  { color: #4a5568; font-size: 0.82rem; }
-    ul.bullets   { margin-top: 8px; padding-left: 18px; }
-    ul.bullets li { font-size: 0.88rem; color: #b0bec5; line-height: 1.7; }
+    /* ── Experience / Projects ── */
+    .entry { margin-bottom: 22px; }
+    .entry:last-child { margin-bottom: 0; }
+    .entry-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 3px; }
+    .entry-title { font-weight: 600; color: #e0e6f0; font-size: 0.97rem; display: flex; align-items: center; gap: 8px; }
+    .entry-sub   { color: #7b9cde; font-size: 0.84rem; display: block; margin-bottom: 7px; }
+    .entry-date  { color: #4a6080; font-size: 0.82rem; white-space: nowrap; }
+    ul.bullets   { padding-left: 18px; }
+    ul.bullets li { font-size: 0.88rem; color: #b0bec5; line-height: 1.75; margin-bottom: 3px; }
+    .proj-link { display: inline-block; margin-top: 6px; font-size: 0.8rem; color: #5b9bff; text-decoration: none; }
+    .proj-link:hover { text-decoration: underline; }
+
+    /* Badges */
+    .badge { font-size: 0.62rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; letter-spacing: 0.5px; vertical-align: middle; }
+    .badge-live { background: #003322; color: #00e87c; border: 1px solid #00e87c; }
+    .badge-wip  { background: #1a1200; color: #ffc107; border: 1px solid #ffc107; }
+
+    /* ── Actions bar ── */
+    .actions-bar { position: fixed; top: 16px; right: 20px; display: flex; gap: 10px; z-index: 10; }
+    .btn-action {
+      padding: 9px 18px; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 0.84rem;
+      font-weight: 600; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+      border: none; transition: opacity 0.15s;
+    }
+    .btn-action:hover { opacity: 0.85; }
+    .btn-dl   { background: linear-gradient(135deg, #6c63ff, #00c9ff); color: #fff; box-shadow: 0 4px 16px rgba(108,99,255,0.35); }
+    .btn-print { background: #1e2a44; color: #a0cff5; border: 1px solid #2a3a5e; }
 
     /* Print */
     @media print {
       body { background: #fff; color: #111; }
-      .skill-tag, .entry { break-inside: avoid; }
-      h2 { color: #4a3aff; }
+      .actions-bar { display: none; }
+      h2 { color: #4a3aff; border-bottom-color: #ccc; }
+      .skill-tag { border-color: #bbb; color: #333; background: #f4f4f4; }
+      .contacts a { color: #1a4aff; }
+      .proj-link { color: #1a4aff; }
     }
 
     @media (max-width: 600px) {
-      .page { padding: 24px 16px; }
-      h1 { font-size: 1.5rem; }
-      .header { flex-direction: column; gap: 16px; }
+      .page { padding: 20px 16px 48px; }
+      .header { flex-direction: column; gap: 14px; text-align: center; }
+      .contacts { justify-content: center; }
+      .header-info h1 { font-size: 1.45rem; }
+      .actions-bar { top: auto; bottom: 16px; right: 16px; left: 16px; justify-content: center; }
     }
-
-    .print-btn {
-      position: fixed; top: 20px; right: 20px;
-      background: linear-gradient(135deg,#6c63ff,#00c9ff);
-      color: #fff; border: none; padding: 10px 20px; border-radius: 10px;
-      font-family: 'Inter', sans-serif; font-size: 0.88rem; font-weight: 600;
-      cursor: pointer; box-shadow: 0 4px 20px rgba(108,99,255,0.4);
-    }
-    @media print { .print-btn { display: none; } }
   </style>
 </head>
 <body>
-  <button class="print-btn" onclick="window.print()">🖨️ Print / Save PDF</button>
+
+  <div class="actions-bar">
+    <a href="/Sushin_Babu_CV.pdf" download="Sushin_Babu_CV.pdf" class="btn-action btn-dl">⬇ Download PDF</a>
+    <button class="btn-action btn-print" onclick="window.print()">🖨️ Print</button>
+  </div>
+
   <div class="page">
 
     <!-- HEADER -->
     <div class="header">
       <div class="avatar-wrap">👨‍💻</div>
-      <div>
+      <div class="header-info">
         <h1>Sushin Babu CM</h1>
-        <p class="subtitle">MERN Stack Developer &amp; AI-Assisted Builder</p>
+        <p class="subtitle">Full Stack Developer</p>
         <div class="contacts">
           <a href="mailto:sushinofficial@gmail.com">sushinofficial@gmail.com</a>
           <a href="https://github.com/Sushincm" target="_blank">github.com/Sushincm</a>
-          <a href="https://linkedin.com/in/sushin-cm" target="_blank">linkedin.com/in/sushin-cm</a>
+          <a href="https://www.linkedin.com/in/sushin-cm-411385200/" target="_blank">linkedin.com/in/sushin-cm</a>
+          <a href="https://my-portfolio-sushin.vercel.app" target="_blank">my-portfolio-sushin.vercel.app</a>
         </div>
       </div>
     </div>
 
-    <!-- ABOUT -->
+    <!-- PROFILE -->
     <section>
-      <h2>About</h2>
+      <h2>Profile</h2>
       <p>
-        I build interactive, user-focused web experiences specializing in the MERN stack.
-        Currently deepening my expertise in Node.js, Express, and MongoDB. I leverage modern AI tools
-        like Antigravity and Claude to accelerate development — combining technical knowledge with
-        vibecoding workflows to ship premium, functional interfaces faster than ever.
+        I build fast, conversion-focused web applications for businesses in Kerala and the GCC region.
+        Specialising in React and the MERN stack, I take projects from Figma wireframe to live deployment —
+        combining hands-on coding with AI-assisted tools like Antigravity and Claude Code to ship polished,
+        production-ready products faster without cutting corners.
       </p>
     </section>
 
-    <!-- SKILLS -->
+    <!-- WORK EXPERIENCE -->
+    <section>
+      <h2>Work Experience</h2>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Freelance Full Stack Developer</span>
+          <span class="entry-date">2024 – Present</span>
+        </div>
+        <span class="entry-sub">Self-Employed · Remote | Kerala, India &amp; GCC Clients</span>
+        <ul class="bullets">
+          <li>Designing and developing client websites and full-stack web apps independently — end-to-end from discovery, Figma design, and React build through to Vercel/Netlify deployment</li>
+          <li>Delivered production projects: Zinkly (HR platform), Knowbest Global (consultancy), Acadome (training portal)</li>
+          <li>Using Antigravity and Claude Code to accelerate delivery as a solo developer without compromising code quality</li>
+          <li>Building first full-stack app (PropFirm Guard) with React + Firebase, applying MERN skills in a live project</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Frontend Developer</span>
+          <span class="entry-date">2022 – 2024</span>
+        </div>
+        <span class="entry-sub">Tedsys Technologies Pvt. Ltd. · Kochi, Kerala, India</span>
+        <ul class="bullets">
+          <li>Built and maintained responsive, cross-browser-compatible web interfaces using HTML5, CSS3, Bootstrap, and JavaScript</li>
+          <li>Collaborated with design and backend teams to translate Figma wireframes into pixel-perfect production pages</li>
+          <li>Optimised page performance, load speeds, and mobile responsiveness across all client projects</li>
+          <li>Contributed across the full project lifecycle from prototyping through to QA and deployment</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Frontend Developer</span>
+          <span class="entry-date">2021 – 2022</span>
+        </div>
+        <span class="entry-sub">The Chandraz · Kondotty, Kerala, India</span>
+        <ul class="bullets">
+          <li>Designed and developed the company website with a fully responsive layout across desktop and mobile</li>
+          <li>Implemented UI components in HTML, CSS, and JavaScript, improving user engagement</li>
+          <li>Gathered requirements directly from the client and iterated rapidly on design feedback</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS -->
     <section>
       <h2>Technical Skills</h2>
       <div class="skills-grid">
@@ -99,16 +166,23 @@
         <span class="skill-tag">CSS3</span>
         <span class="skill-tag">JavaScript (ES6+)</span>
         <span class="skill-tag">React</span>
+        <span class="skill-tag">Bootstrap</span>
         <span class="skill-tag">Node.js</span>
         <span class="skill-tag">Express.js</span>
         <span class="skill-tag">MongoDB</span>
+        <span class="skill-tag">Firebase (Firestore, Auth, Realtime DB)</span>
         <span class="skill-tag">REST APIs</span>
         <span class="skill-tag">Vite</span>
         <span class="skill-tag">Git / GitHub</span>
-        <span class="skill-tag ai">🤖 Antigravity AI</span>
-        <span class="skill-tag ai">🤖 Claude AI</span>
+        <span class="skill-tag">Vercel / Netlify</span>
+        <span class="skill-tag">WordPress</span>
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">Adobe Photoshop</span>
         <span class="skill-tag">Responsive Design</span>
+        <span class="skill-tag">GSAP</span>
         <span class="skill-tag">Kaboom.js</span>
+        <span class="skill-tag ai">🤖 Antigravity AI</span>
+        <span class="skill-tag ai">🤖 Claude Code</span>
       </div>
     </section>
 
@@ -118,76 +192,125 @@
 
       <div class="entry">
         <div class="entry-header">
-          <span class="entry-title">Trading Assistance App</span>
-          <span class="entry-date">2024</span>
-        </div>
-        <span class="entry-sub">React · JavaScript · CSS</span>
-        <ul class="bullets">
-          <li>Built a forex risk management tool for prop firm traders</li>
-          <li>Features: stop-loss/lot-size calculator, trade journal, analytics &amp; news alerts</li>
-          <li>Used by a circle of traders to stay compliant with daily loss limits</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">Social Media Carousel Generator</span>
-          <span class="entry-date">2024</span>
-        </div>
-        <span class="entry-sub">HTML · CSS · JavaScript</span>
-        <ul class="bullets">
-          <li>Graphic design tool for generating cohesive image carousels for social platforms</li>
-          <li>Custom prompt-based design system with multiple style presets</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">AI Development Sandbox</span>
-          <span class="entry-date">2024 – Present</span>
-        </div>
-        <span class="entry-sub">Antigravity · Claude · React · Firebase</span>
-        <ul class="bullets">
-          <li>Rapid prototype and deployment of web interfaces using AI-assisted workflows</li>
-          <li>Demonstrates capability to ship production-quality features with AI collaboration</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">Mario-Style Portfolio Game</span>
+          <span class="entry-title">Personal Developer Portfolio <span class="badge badge-live">LIVE</span></span>
           <span class="entry-date">2025</span>
         </div>
-        <span class="entry-sub">React · Kaboom.js · Vite</span>
+        <span class="entry-sub">React · GSAP · Vite · CSS3 · Antigravity · Claude Code</span>
         <ul class="bullets">
-          <li>Interactive pixel-art portfolio delivered as a playable browser game</li>
-          <li>Players collect coins to unlock About, Projects, Skills, and Contact info</li>
+          <li>Built with advanced GSAP animations: scroll-triggered reveals, magnetic cursor, letter-by-letter heading entrance, 3D card tilt-on-hover</li>
+          <li>Entire UI designed from scratch in Figma — dark editorial aesthetic, Bebas Neue font, electric lime accent, noise overlay</li>
+          <li>Used Antigravity + Claude Code to accelerate scaffolding while owning all animation and design decisions personally</li>
         </ul>
+        <a href="https://my-portfolio-sushin.vercel.app" target="_blank" class="proj-link">🔗 my-portfolio-sushin.vercel.app</a>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Acadome — Finance Training Institute <span class="badge badge-wip">WIP</span></span>
+          <span class="entry-date">2025</span>
+        </div>
+        <span class="entry-sub">React · HTML5 · CSS3 · Figma · Antigravity · Claude Code · Vercel</span>
+        <ul class="bullets">
+          <li>Building full website covering programs, internship pathways, workshops, seminars and application flows for India &amp; GCC markets</li>
+          <li>Iterative AI-assisted workflow: Figma design → React build → Antigravity/Claude Code acceleration → incremental Vercel deployment</li>
+          <li>Focused on professional credibility, clear content hierarchy, and conversion-led design to turn visitors into applicants</li>
+        </ul>
+        <a href="https://acadome.vercel.app" target="_blank" class="proj-link">🔗 acadome.vercel.app</a>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">PropFirm Guard — Trading Protection App <span class="badge badge-wip">WIP</span></span>
+          <span class="entry-date">2024 – Present</span>
+        </div>
+        <span class="entry-sub">React · Node.js · Firebase · Firestore · Netlify</span>
+        <ul class="bullets">
+          <li>Full-stack app: React frontend + Firebase backend (Firestore, Auth, Realtime DB) for prop trading compliance</li>
+          <li>Features real-time data management, protected user account flows, and live state management</li>
+          <li>First major full-stack project applying MERN-adjacent skills beyond tutorials in a live deployed product</li>
+        </ul>
+        <a href="https://propfirm-guard.netlify.app" target="_blank" class="proj-link">🔗 propfirm-guard.netlify.app</a>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Zinkly — HR Ecosystem Platform <span class="badge badge-live">LIVE</span></span>
+          <span class="entry-date">2024</span>
+        </div>
+        <span class="entry-sub">HTML5 · CSS3 · JavaScript · Figma · Antigravity · Claude Code</span>
+        <ul class="bullets">
+          <li>Full multi-page HR platform — Zinkly Ready (job prep), Edge (workforce management), Connect (referral hiring)</li>
+          <li>Covers smart screening, future-ready hiring, and human-first recruitment for India and GCC markets</li>
+          <li>Includes job application forms, FAQ, partner programme, newsletter integration — deployed on Netlify</li>
+        </ul>
+        <a href="https://zinkly.netlify.app" target="_blank" class="proj-link">🔗 zinkly.netlify.app</a>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Knowbest Global — Study Abroad Consultancy <span class="badge badge-live">LIVE</span></span>
+          <span class="entry-date">2024</span>
+        </div>
+        <span class="entry-sub">React · CSS3 · JavaScript · Figma · Antigravity</span>
+        <ul class="bullets">
+          <li>Full React client website for a study abroad and job consultancy targeting Kerala and GCC markets</li>
+          <li>Lead-generation UX: strategic CTAs, enquiry forms, trust-building content — measurably increased inbound enquiries</li>
+          <li>Mobile-first responsive design; deployed on Vercel</li>
+        </ul>
+        <a href="https://knowbest-global.vercel.app" target="_blank" class="proj-link">🔗 knowbest-global.vercel.app</a>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Bossify — E-Commerce Platform <span class="badge badge-live">LIVE</span></span>
+          <span class="entry-date">2024</span>
+        </div>
+        <span class="entry-sub">HTML5 · CSS3 · JavaScript</span>
+        <ul class="bullets">
+          <li>Full multi-page e-commerce platform: product listing, cart, login/signup, address management</li>
+          <li>Dynamic cart interactions and responsive navigation via vanilla JavaScript</li>
+          <li>Deployed live on Netlify</li>
+        </ul>
+        <a href="https://bossify-ecom.netlify.app" target="_blank" class="proj-link">🔗 bossify-ecom.netlify.app</a>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Thamburatti — E-Commerce Website <span class="badge badge-live">LIVE</span></span>
+          <span class="entry-date">2024</span>
+        </div>
+        <span class="entry-sub">HTML5 · CSS3 · JavaScript</span>
+        <ul class="bullets">
+          <li>Complete e-commerce frontend: product pages, login/signup flows, responsive layout</li>
+          <li>Focused on clean UI and smooth user flows for a seamless shopping experience</li>
+          <li>Deployed live on Netlify</li>
+        </ul>
+        <a href="https://thamburatti-ecom.netlify.app" target="_blank" class="proj-link">🔗 thamburatti-ecom.netlify.app</a>
       </div>
     </section>
 
-    <!-- LEARNING -->
+    <!-- CURRENTLY LEARNING -->
     <section>
       <h2>Currently Learning</h2>
       <div class="skills-grid">
-        <span class="skill-tag">Node.js (Backend)</span>
-        <span class="skill-tag">Express.js (REST APIs)</span>
+        <span class="skill-tag">Node.js (Backend Development)</span>
+        <span class="skill-tag">Express.js (REST API Design)</span>
         <span class="skill-tag">MongoDB (Mongoose ODM)</span>
-        <span class="skill-tag">Full-Stack Deployment</span>
+        <span class="skill-tag">Full-Stack Architecture &amp; Deployment</span>
+        <span class="skill-tag">Firebase (Firestore, Auth, Realtime DB)</span>
       </div>
     </section>
 
-    <!-- APPROACH -->
+    <!-- DEVELOPMENT APPROACH -->
     <section>
       <h2>Development Approach</h2>
       <p>
-        I combine hands-on coding with modern AI-assisted development ("vibecoding") using
-        Antigravity and Claude. This allows me to architect solutions quickly, iterate on UX ideas
-        in real time, and deliver polished results while still maintaining full understanding and
-        ownership of the codebase.
+        I combine hands-on coding with modern AI-assisted development using Antigravity and Claude Code.
+        This lets me design in Figma, architect in React, accelerate logic with AI, and deploy on Vercel or
+        Netlify — owning every decision in the process while shipping significantly faster as a solo developer.
       </p>
     </section>
 
-  </div>
+  </div><!-- /page -->
 </body>
 </html>

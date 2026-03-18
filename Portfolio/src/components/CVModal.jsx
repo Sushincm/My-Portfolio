@@ -1,8 +1,18 @@
 import React from 'react';
 import { portfolioData } from '../data.js';
 
-const { developer_info, cv_skills, currently_learning, projects_zone } = portfolioData;
-const { name, title, bio, cv_approach, avatar_emoji, email, social_links, ai_tools } = developer_info;
+const {
+  developer_info,
+  cv_skills,
+  currently_learning,
+  projects_zone,
+  experience,
+} = portfolioData;
+
+const {
+  name, title, bio, cv_approach,
+  avatar_emoji, email, social_links, portfolio,
+} = developer_info;
 
 export default function CVModal({ onClose }) {
   return (
@@ -15,6 +25,14 @@ export default function CVModal({ onClose }) {
         <div className="cv-topbar">
           <span className="cv-topbar-title">📄 CURRICULUM VITAE</span>
           <div className="cv-topbar-actions">
+            <a
+              href="/Sushin_Babu_CV.pdf"
+              download="Sushin_Babu_CV.pdf"
+              className="cv-action-btn cv-action-btn--dl"
+              title="Download PDF"
+            >
+              ⬇ PDF
+            </a>
             <a
               href="/cv.html"
               target="_blank"
@@ -42,15 +60,33 @@ export default function CVModal({ onClose }) {
               <div className="cv-contacts">
                 <a href={`mailto:${email}`}>{email}</a>
                 <a href={social_links.github}  target="_blank" rel="noreferrer">{social_links.github.replace('https://', '')}</a>
-                <a href={social_links.linkedin} target="_blank" rel="noreferrer">{social_links.linkedin.replace('https://', '')}</a>
+                <a href={social_links.linkedin} target="_blank" rel="noreferrer">linkedin.com/in/sushin-cm</a>
+                <a href={portfolio} target="_blank" rel="noreferrer">{portfolio.replace('https://', '')}</a>
               </div>
             </div>
           </div>
 
           {/* ABOUT */}
           <section className="cv-section">
-            <h2 className="cv-section-title">About</h2>
+            <h2 className="cv-section-title">Profile</h2>
             <p className="cv-text">{bio}</p>
+          </section>
+
+          {/* WORK EXPERIENCE */}
+          <section className="cv-section">
+            <h2 className="cv-section-title">Work Experience</h2>
+            {experience.map((exp, i) => (
+              <div key={i} className="cv-entry">
+                <div className="cv-entry-header">
+                  <span className="cv-entry-title">{exp.role}</span>
+                  <span className="cv-entry-date">{exp.period}</span>
+                </div>
+                <span className="cv-entry-sub">{exp.company} · {exp.location}</span>
+                <ul className="cv-bullets">
+                  {exp.bullets.map((b, j) => <li key={j}>{b}</li>)}
+                </ul>
+              </div>
+            ))}
           </section>
 
           {/* TECHNICAL SKILLS */}
@@ -74,15 +110,22 @@ export default function CVModal({ onClose }) {
             {projects_zone.map(proj => (
               <div key={proj.id} className="cv-entry">
                 <div className="cv-entry-header">
-                  <span className="cv-entry-title">{proj.title}</span>
+                  <span className="cv-entry-title">
+                    {proj.title}
+                    {proj.status === 'live' && <span className="cv-badge cv-badge--live"> LIVE</span>}
+                    {proj.status === 'in-progress' && <span className="cv-badge cv-badge--wip"> WIP</span>}
+                  </span>
                   <span className="cv-entry-date">{proj.date}</span>
                 </div>
                 <span className="cv-entry-sub">{proj.tech_stack.join(' · ')}</span>
                 <ul className="cv-bullets">
-                  {proj.cv_bullets.map((b, i) => (
-                    <li key={i}>{b}</li>
-                  ))}
+                  {proj.cv_bullets.map((b, i) => <li key={i}>{b}</li>)}
                 </ul>
+                {proj.links?.live && (
+                  <a href={proj.links.live} target="_blank" rel="noreferrer" className="cv-proj-link">
+                    🔗 {proj.links.live.replace('https://', '')}
+                  </a>
+                )}
               </div>
             ))}
           </section>
@@ -107,6 +150,13 @@ export default function CVModal({ onClose }) {
 
         {/* ── Bottom bar ── */}
         <div className="cv-footer">
+          <a
+            href="/Sushin_Babu_CV.pdf"
+            download="Sushin_Babu_CV.pdf"
+            className="cv-footer-btn cv-footer-btn--dl"
+          >
+            ⬇ DOWNLOAD PDF
+          </a>
           <a href="/cv.html" target="_blank" rel="noreferrer" className="cv-footer-btn cv-footer-btn--open">
             ↗ OPEN FULL PAGE
           </a>
