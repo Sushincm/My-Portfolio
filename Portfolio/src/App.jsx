@@ -6,9 +6,11 @@ import ProjectCard from './components/ProjectCard';
 import ContactForm from './components/ContactForm';
 import WinModal from './components/WinModal';
 import CVModal from './components/CVModal';
+import IntroScreen from './components/IntroScreen';
 import './index.css';
 
 function App() {
+  const [showIntro, setShowIntro] = useState(true);
   const [modal, setModal] = useState(null);
   const [coinCount, setCoinCount] = useState(0);
   const [engineReady, setEngineReady] = useState(false);
@@ -30,26 +32,31 @@ function App() {
   // Re-focus also on any click outside a modal
   useEffect(() => {
     const refocus = () => {
-      if (!document.querySelector('.modal-backdrop')) {
+      if (!document.querySelector('.modal-backdrop') && !showIntro) {
         document.querySelector('canvas')?.focus({ preventScroll: true });
       }
     };
     window.addEventListener('click', refocus);
     return () => window.removeEventListener('click', refocus);
-  }, []);
+  }, [showIntro]);
 
   const projectData = modal?.type === 'PROJECT' ? modal.data : null;
 
   return (
     <div className="app-container">
-      <GameApp
-        setModal={setModal}
-        onCollectSkill={handleCollectSkill}
-        setEngineReady={setEngineReady}
-        restartRef={restartRef}
-      />
-
-      {engineReady && <HUD coinCount={coinCount} />}
+      {showIntro ? (
+        <IntroScreen onPlay={() => setShowIntro(false)} />
+      ) : (
+        <>
+          <GameApp
+            setModal={setModal}
+            onCollectSkill={handleCollectSkill}
+            setEngineReady={setEngineReady}
+            restartRef={restartRef}
+          />
+          {engineReady && <HUD coinCount={coinCount} />}
+        </>
+      )}
 
       {modal?.type === 'ABOUT'   && <AboutModal   onClose={closeModal} />}
       {modal?.type === 'PROJECT' && <ProjectCard  project={projectData} onClose={closeModal} />}
