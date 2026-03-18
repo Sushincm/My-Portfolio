@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { portfolioData } from '../data.js';
+import React, { useState } from "react";
+import { portfolioData } from "../data.js";
 
 // ─────────────────────────────────────────────────────────────
 //  Google Form config — replace the entry IDs below with the
@@ -7,23 +7,24 @@ import { portfolioData } from '../data.js';
 //  [...new Set(document.documentElement.innerHTML.match(/entry\.\d+/g))]
 // ─────────────────────────────────────────────────────────────
 const FORM_ACTION =
-  'https://docs.google.com/forms/d/e/1FAIpQLSenwvXWVqTU2hN_BDJBW0SHrPPdJUh60jSW30N-5H3bOhmV9g/formResponse';
+  "https://docs.google.com/forms/d/e/1FAIpQLSenwvXWVqTU2hN_BDJBW0SHrPPdJUh60jSW30N-5H3bOhmV9g/formResponse";
 
 const FIELD_IDS = {
-  name:    'entry.REPLACE_NAME',    // ← replace with actual entry ID
-  email:   'entry.REPLACE_EMAIL',   // ← replace with actual entry ID
-  message: 'entry.REPLACE_MESSAGE', // ← replace with actual entry ID
+  name: "entry.660113238",
+  email: "entry.1672134303",
+  message: "entry.1691957463",
 };
 // ─────────────────────────────────────────────────────────────
 
 export default function ContactForm({ onClose }) {
   const data = portfolioData.contact_zone;
-  const dev  = portfolioData.developer_info;
-  const [sent, setSent]       = useState(false);
+  const dev = portfolioData.developer_info;
+  const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
-  const [form, setForm]       = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+  const handleChange = (e) =>
+    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
   const handleSend = async (e) => {
     e.preventDefault();
@@ -31,8 +32,8 @@ export default function ContactForm({ onClose }) {
 
     // Build form data payload for Google Forms
     const body = new FormData();
-    body.append(FIELD_IDS.name,    form.name);
-    body.append(FIELD_IDS.email,   form.email);
+    body.append(FIELD_IDS.name, form.name);
+    body.append(FIELD_IDS.email, form.email);
     body.append(FIELD_IDS.message, form.message);
 
     try {
@@ -50,8 +51,13 @@ export default function ContactForm({ onClose }) {
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal-content contact-modal" onClick={e => e.stopPropagation()}>
-        <button className="close-btn" onClick={onClose}>&times;</button>
+      <div
+        className="modal-content contact-modal"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className="close-btn" onClick={onClose}>
+          &times;
+        </button>
 
         <h2>🏰 Contact Me</h2>
         <p className="about-bio">{data.message_prompt}</p>
@@ -94,18 +100,36 @@ export default function ContactForm({ onClose }) {
               disabled={sending}
             />
             <button type="submit" className="btn-submit" disabled={sending}>
-              {sending ? '⏳ Sending…' : '🚀 Send Message'}
+              {sending ? "⏳ Sending…" : "🚀 Send Message"}
             </button>
           </form>
         )}
 
-        <div className="social-links" style={{ marginTop: '1.5rem' }}>
-          <a href={dev.social_links.github}   target="_blank" rel="noreferrer" className="btn-social">GitHub</a>
-          <a href={dev.social_links.linkedin} target="_blank" rel="noreferrer" className="btn-social btn-linkedin">LinkedIn</a>
+        <div className="social-links" style={{ marginTop: "1.5rem" }}>
+          <a
+            href={dev.social_links.github}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-social"
+          >
+            GitHub
+          </a>
+          <a
+            href={dev.social_links.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-social btn-linkedin"
+          >
+            LinkedIn
+          </a>
         </div>
 
         {/* Hidden iframe used to submit to Google Forms without CORS error */}
-        <iframe name="gform-hidden-target" style={{ display: 'none' }} title="form-submit" />
+        <iframe
+          name="gform-hidden-target"
+          style={{ display: "none" }}
+          title="form-submit"
+        />
       </div>
     </div>
   );
@@ -117,16 +141,16 @@ function submitViaIframe(formData) {
     const iframe = document.querySelector('iframe[name="gform-hidden-target"]');
 
     // Build and auto-submit a temporary form targeting the hidden iframe
-    const tempForm = document.createElement('form');
-    tempForm.method = 'POST';
+    const tempForm = document.createElement("form");
+    tempForm.method = "POST";
     tempForm.action = FORM_ACTION;
-    tempForm.target = 'gform-hidden-target';
-    tempForm.style.display = 'none';
+    tempForm.target = "gform-hidden-target";
+    tempForm.style.display = "none";
 
     for (const [key, value] of formData.entries()) {
-      const input = document.createElement('input');
-      input.type  = 'hidden';
-      input.name  = key;
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = key;
       input.value = value;
       tempForm.appendChild(input);
     }

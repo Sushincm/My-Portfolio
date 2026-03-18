@@ -73,7 +73,7 @@ export const portfolioData = {
       "title": "Personal Developer Portfolio",
       "date": "2025",
       "short_description": "Animated personal portfolio built in React with GSAP — the site you're playing right now.",
-      "long_description": "Designed and built from scratch in Figma and React. Features advanced GSAP animations: scroll-triggered section reveals, a magnetic custom cursor (dot + trailing ring), letter-by-letter heading entrance, and per-card 3D tilt-on-hover. Dark editorial aesthetic with Bebas Neue display font and electric lime accent system. AI-assisted scaffolding via Antigravity and Claude Code.",
+      "long_description": "A fully playable 2D side-scroller built with Kaboom.js inside a React/Vite app. Players collect coins and hit ? blocks to trigger real portfolio modals (About, Projects, Skills, Contact, CV). Features custom pixel-drawn sprites, procedural level design, sprite flip on direction change, touch D-pad controls for mobile, a HUD coin counter, and a pixel-styled win screen.",
       "tech_stack": ["React", "GSAP", "Vite", "CSS3", "Antigravity", "Claude Code"],
       "cv_bullets": [
         "Built with advanced GSAP animations: scroll-triggered reveals, magnetic cursor, letter-by-letter heading entrance, 3D card tilt-on-hover",
@@ -82,7 +82,7 @@ export const portfolioData = {
       ],
       "links": {
         "live": "https://my-portfolio-sushin.vercel.app",
-        "repo": "https://github.com/Sushincm"
+        "repo": "https://github.com/Sushincm/My-Portfolio/tree/main/Portfolio"
       },
       "status": "live"
     },
