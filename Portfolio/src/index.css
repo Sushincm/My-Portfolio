@@ -71,6 +71,7 @@ html, body, #root {
   z-index: 100;
   padding: 1rem;
   animation: fadeIn 0.15s ease;
+  will-change: opacity;
 }
 
 @keyframes fadeIn {
@@ -96,6 +97,7 @@ html, body, #root {
   overflow-y: auto;
   max-height: 90vh;
   image-rendering: pixelated;
+  will-change: transform, opacity;
 }
 
 @keyframes pixelIn {
@@ -984,6 +986,7 @@ p {
   cursor: pointer;
   transition: transform 0.1s, background 0.1s;
   animation: pulseButton 1s infinite alternate;
+  will-change: transform;
 }
 
 .btn-play-now:hover {

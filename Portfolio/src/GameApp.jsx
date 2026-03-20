@@ -32,7 +32,7 @@ export default function GameApp({ setModal, onCollectSkill, setEngineReady, rest
     canvas.style.cssText = 'display:block;width:100%;height:100%;image-rendering:pixelated;outline:none;';
     containerRef.current.appendChild(canvas);
 
-    const k = kaboom({ global: false, canvas, background: [92, 148, 252], pixelDensity: 1 });
+    const k = kaboom({ global: false, canvas, background: [92, 148, 252], pixelDensity: 1, maxFPS: 60 });
     setEngineReady(true);
     setCtrlVisible(true);
 
@@ -94,7 +94,7 @@ export default function GameApp({ setModal, onCollectSkill, setEngineReady, rest
       const H  = k.height();
       const GY = H - 64;
 
-      k.add([k.rect(k.width()*7,64), k.pos(0,GY), k.color(k.rgb(196,100,12)), k.area(), k.body({isStatic:true}), k.outline(2,k.rgb(80,30,0))]);
+      k.add([k.rect(k.width()*7, 200), k.pos(0,GY), k.color(k.rgb(196,100,12)), k.area(), k.body({isStatic:true}), k.outline(2,k.rgb(80,30,0))]);
       for(let gx=0; gx<k.width()*7; gx+=32) {
         k.add([k.rect(30,5), k.pos(gx+1,GY+8),  k.color(k.rgb(220,110,20))]);
         k.add([k.rect(30,5), k.pos(gx+1,GY+28), k.color(k.rgb(220,110,20))]);
@@ -182,6 +182,7 @@ export default function GameApp({ setModal, onCollectSkill, setEngineReady, rest
       });
 
       k.onUpdate(()=>{
+        const dt = Math.min(k.dt(), 0.05); // cap dt to prevent huge jumps causing crashes/tunneling
         if(input.left)  { player.move(-SPEED,0); player.flipX = true;  }
         if(input.right) { player.move(SPEED,0);  player.flipX = false; }
         if(input.jump && player.isGrounded()){ player.jump(JUMP_FORCE); input.jump=false; }
@@ -226,10 +227,8 @@ export default function GameApp({ setModal, onCollectSkill, setEngineReady, rest
       });
       player.onCollide('wintrigger', ()=>{ setModalRef.current({type:'WIN'}); });
 
-      k.onDraw(()=>{
-        k.drawRect({width:310,height:22,pos:k.vec2(0,0),color:k.rgb(0,0,0),opacity:0.55,fixed:true});
-        k.drawText({text:'← → MOVE   SPACE JUMP',size:11,pos:k.vec2(8,5),fixed:true,color:k.rgb(255,255,255)});
-      });
+      k.add([k.rect(310,22), k.pos(0,0), k.color(k.rgb(0,0,0)), k.opacity(0.55), k.fixed(), k.z(100)]);
+      k.add([k.text('← → MOVE   SPACE JUMP',{size:11}), k.pos(8,5), k.color(k.rgb(255,255,255)), k.fixed(), k.z(101)]);
     });
 
     k.go('game');
@@ -238,10 +237,21 @@ export default function GameApp({ setModal, onCollectSkill, setEngineReady, rest
       restartRef.current = () => { k.go('game'); };
     }
 
-    /* ── RESIZE: keep canvas filling viewport ── */
+    /* ── RESIZE: keep canvas filling viewport, optimized for mobile url bars ── */
+    let lastW = window.innerWidth, lastH = window.innerHeight;
+    let resizeTimer;
     const onResize = () => {
-      canvas.width  = window.innerWidth;
-      canvas.height = window.innerHeight;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const dW = Math.abs(window.innerWidth - lastW);
+        const dH = Math.abs(window.innerHeight - lastH);
+        // Only resize if width changes (rotation) or height changes > 150px
+        if (dW > 0 || dH > 150) {
+          canvas.width  = window.innerWidth;
+          canvas.height = window.innerHeight;
+          lastW = window.innerWidth; lastH = window.innerHeight;
+        }
+      }, 250);
     };
     window.addEventListener('resize', onResize);
 
